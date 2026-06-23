@@ -1,0 +1,107 @@
+.cart-title {
+  font-family: "Metal Mania", cursive;
+  font-size: 3rem;
+  text-align: center;
+  width: 100%;
+}
+.cart-modal {
+  max-width: 900px !important;
+}
+.modal-header {
+  border-bottom: none !important;
+}
+.modal-body {
+  padding-top: 0.5rem !important;
+}
+.cart-table {
+  margin-top: 0;
+}
+
+.cart-table thead th {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #222 !important;
+  padding-bottom: 12px;
+}
+
+.cart-table tbody td {
+  vertical-align: middle;
+  padding: 20px 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.cart-item span {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.cart-table tbody td {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+}
+
+.cart-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.quantity-box {
+  display: inline-block;
+  border: 1px solid #56ccf2;
+  width: 40px;
+  text-align: center;
+  padding: 3px 0;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.remove-btn {
+  background-color: #eb5757 !important;
+  border: none !important;
+  font-weight: bold;
+}
+
+.cart-total {
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #111;
+}
+
+.purchase-btn {
+  background-color: #56ccf2 !important;
+  border: none !important;
+  padding: 10px 30px !important;
+  font-size: 1.3rem !important;
+  font-weight: bold !important;
+}
+.purchase-btn:hover {
+  background-color: #35b8e6 !important;
+}
+.modal-footer {
+  border-top: none !important;
+  justify-content: flex-end !important;
+}
+
+.cart-total {
+  margin-right: 10px;
+}
+
+.btn-close {
+  font-size: 1.2rem !important;
+  opacity: 1 !important;
+  transition: transform 0.3s ease;
+}
+
+.btn-close:hover {
+  transform: scale(1.2);
+}

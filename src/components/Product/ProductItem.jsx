@@ -1,8 +1,15 @@
+import { useContext } from "react";
 import { Card, Button } from "react-bootstrap";
 import "../Product/ProductItem.css";
-
+import CartContext from "../../store/cart-context";
 
 function ProductItem({ product }) {
+   const cartCtx = useContext(CartContext);
+
+  const addToCartHandler = () => {
+    cartCtx.addItem(product);
+  };
+
   return (
     <Card className="product-card">
       <Card.Img
@@ -21,7 +28,8 @@ function ProductItem({ product }) {
             ${product.price}
           </span>
 
-          <Button variant="info">
+          <Button variant="info"
+          onClick={addToCartHandler}>
             Add To Cart
           </Button>
         </div>

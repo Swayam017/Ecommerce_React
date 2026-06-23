@@ -19,12 +19,14 @@
 }
 
 .product-card {
+  max-width: 350px;
+  margin: 0 auto;
   border: none;
-  border-radius: 15px;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  height: 100%;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
 }
 
 .product-card:hover {
@@ -32,10 +34,6 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-.product-image {
-  height: 280px;
-  object-fit: cover;
-}
 
 
 .product-footer {

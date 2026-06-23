@@ -34,13 +34,13 @@ function ProductList() {
     <Container className="py-5">
       <h2 className="section-title">MUSIC</h2>
 
-      <Row className="g-4">
-        {productsArr.map((product) => (
-          <Col md={6} lg={3} key={product.title}>
-            <ProductItem product={product} />
-          </Col>
-        ))}
-      </Row>
+    <Row className="g-5 justify-content-center">
+  {productsArr.map((product) => (
+    <Col xs={12} md={6} key={product.title}>
+      <ProductItem product={product} />
+    </Col>
+  ))}
+</Row>
     </Container>
   );
 }

@@ -9,6 +9,7 @@
   align-items: center;
   gap: 0.75rem;
   transition: all 0.3s ease;
+  border-radius: 4px;
 }
 
 .cart-button:hover {
@@ -20,9 +21,10 @@
   background-color: #56ccf2;
   color: black;
   font-weight: bold;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
+  border-radius: 20px;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
   display: flex;
   align-items: center;
   justify-content: center;

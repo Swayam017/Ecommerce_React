@@ -1,11 +1,11 @@
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import CartButton from "../Cart/CartButton";
 import "./Header.css";
 
 function Header({ onShowCart }) {
   return (
     <>
-      <Navbar bg="dark" variant="dark">
+      <Navbar className="main-navbar">
         <Container>
           <Nav className="mx-auto">
             <Nav.Link>HOME</Nav.Link>
@@ -13,12 +13,7 @@ function Header({ onShowCart }) {
             <Nav.Link>ABOUT</Nav.Link>
           </Nav>
 
-          <Button
-            variant="outline-info"
-            onClick={onShowCart}
-          >
-            Cart
-          </Button>
+          <CartButton onClick={onShowCart} />
         </Container>
       </Navbar>
 

@@ -1,13 +1,16 @@
 .main-navbar {
-  background-color: #000;
+  background-color: #000 !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 70px;
 }
 
 .main-navbar .nav-link {
   color: white !important;
-  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
   font-weight: 500;
+  margin: 0 1.5rem;
   letter-spacing: 1px;
+  transition: color 0.3s;
 }
 
 .main-navbar .nav-link:hover {
@@ -17,20 +20,12 @@
 .hero-section {
   background-color: #777;
   text-align: center;
-  padding: 6rem 1rem;
+  padding: 5rem 0;
 }
 
 .hero-title {
   font-family: "Metal Mania", cursive;
-  font-size: 6rem;
   color: white;
+  font-size: 5rem;
   margin: 0;
-  font-weight: normal;
-}
-
-.hero-subtitle {
-  font-family: "Poppins", sans-serif;
-  color: white;
-  margin-top: 1rem;
-  font-size: 1.2rem;
 }
