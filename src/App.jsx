@@ -6,6 +6,7 @@ import Cart from "./components/Cart/Cart";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Store from "./pages/Store";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -30,9 +31,10 @@ function App() {
       <Header onShowCart={showCartHandler} />
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+  <Route path="/" element={<Home />} />
+  <Route path="/store" element={<Store />} />
+  <Route path="/about" element={<About />} />
+</Routes>
     </>
   );
 }

@@ -9,24 +9,35 @@ function Header({ onShowCart }) {
       <Navbar className="main-navbar">
         <Container>
           <Nav className="mx-auto">
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? "nav-link active-link" : "nav-link"
-              }
-            >
-              HOME
-            </NavLink>
 
-            <NavLink
-              to="/about"
-              className={({ isActive }) =>
-                isActive ? "nav-link active-link" : "nav-link"
-              }
-            >
-              ABOUT
-            </NavLink>
-          </Nav>
+  <NavLink
+    to="/"
+    className={({ isActive }) =>
+      isActive ? "nav-link active-link" : "nav-link"
+    }
+  >
+    HOME
+  </NavLink>
+
+  <NavLink
+    to="/store"
+    className={({ isActive }) =>
+      isActive ? "nav-link active-link" : "nav-link"
+    }
+  >
+    STORE
+  </NavLink>
+
+  <NavLink
+    to="/about"
+    className={({ isActive }) =>
+      isActive ? "nav-link active-link" : "nav-link"
+    }
+  >
+    ABOUT
+  </NavLink>
+
+</Nav>
 
           <CartButton onClick={onShowCart} />
         </Container>
