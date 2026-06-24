@@ -1,4 +1,5 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 import CartButton from "../Cart/CartButton";
 import "./Header.css";
 
@@ -8,9 +9,23 @@ function Header({ onShowCart }) {
       <Navbar className="main-navbar">
         <Container>
           <Nav className="mx-auto">
-            <Nav.Link>HOME</Nav.Link>
-            <Nav.Link>STORE</Nav.Link>
-            <Nav.Link>ABOUT</Nav.Link>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "nav-link active-link" : "nav-link"
+              }
+            >
+              HOME
+            </NavLink>
+
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive ? "nav-link active-link" : "nav-link"
+              }
+            >
+              ABOUT
+            </NavLink>
           </Nav>
 
           <CartButton onClick={onShowCart} />
