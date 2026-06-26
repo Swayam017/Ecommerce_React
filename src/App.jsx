@@ -7,6 +7,7 @@ import Cart from "./components/Cart/Cart";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Store from "./pages/Store";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -34,6 +35,7 @@ function App() {
   <Route path="/" element={<Home />} />
   <Route path="/store" element={<Store />} />
   <Route path="/about" element={<About />} />
+   <Route path="/contact" element={<ContactUs />} />
 </Routes>
     </>
   );

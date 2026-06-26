@@ -9,7 +9,6 @@ function Header({ onShowCart }) {
       <Navbar className="main-navbar">
         <Container>
           <Nav className="mx-auto">
-
   <NavLink
     to="/"
     className={({ isActive }) =>
@@ -37,6 +36,14 @@ function Header({ onShowCart }) {
     ABOUT
   </NavLink>
 
+  <NavLink
+    to="/contact"
+    className={({ isActive }) =>
+      isActive ? "nav-link active-link" : "nav-link"
+    }
+  >
+    CONTACT US
+  </NavLink>
 </Nav>
 
           <CartButton onClick={onShowCart} />
