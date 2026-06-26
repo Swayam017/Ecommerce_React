@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Card, Button } from "react-bootstrap";
 import "../Product/ProductItem.css";
 import CartContext from "../../store/cart-context";
+import { Link } from "react-router-dom";
 
 function ProductItem({ product }) {
    const cartCtx = useContext(CartContext);
@@ -11,6 +12,7 @@ function ProductItem({ product }) {
   };
 
   return (
+    <Link to={`/products/${product.id}`}>
     <Card className="product-card">
       <Card.Img
         variant="top"
@@ -35,6 +37,7 @@ function ProductItem({ product }) {
         </div>
       </Card.Body>
     </Card>
+    </Link>
   );
 }
 
