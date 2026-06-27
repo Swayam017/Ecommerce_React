@@ -1,6 +1,7 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import CartButton from "../Cart/CartButton";
+import { Link } from "react-router-dom";
 import "./Header.css";
 
 function Header({ onShowCart }) {
@@ -44,6 +45,11 @@ function Header({ onShowCart }) {
   >
     CONTACT US
   </NavLink>
+
+  <Link to="/signup" className="btn btn-outline-light">
+  Sign Up
+</Link>
+
 </Nav>
 
           <CartButton onClick={onShowCart} />
