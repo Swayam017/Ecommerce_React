@@ -1,27 +1,24 @@
 import { useState } from "react";
 import { Form, Button, Card, Alert, Spinner } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 
-function Signup() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+  const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
 
-  const submitHandler = async (e) => {
+  const loginHandler = async (e) => {
     e.preventDefault();
 
     setLoading(true);
     setError("");
 
-const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
-
     try {
       const response = await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`,
         {
           method: "POST",
           headers: {
@@ -38,28 +35,27 @@ const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error.message);
+        throw new Error("Authentication Failed");
       }
 
-      alert("Signup Successful");
-   
+      console.log("JWT Token:", data.idToken);
 
-      setEmail("");
-      setPassword("");
+      // Store JWT
+      localStorage.setItem("token", data.idToken);
 
-       navigate("/login");
+      alert("Login Successful");
     } catch (err) {
       setError(err.message);
-    }finally{
-    setLoading(false);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <Card className="p-4 mx-auto mt-5" style={{ maxWidth: "400px" }}>
-      <h3 className="text-center mb-4">Create Account</h3>
+      <h3 className="text-center mb-4">Login</h3>
 
-      <Form onSubmit={submitHandler}>
+      <Form onSubmit={loginHandler}>
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
 
@@ -82,18 +78,14 @@ const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
           />
         </Form.Group>
 
-        <Button
-          type="submit"
-          className="w-100"
-          disabled={loading}
-        >
+        <Button type="submit" className="w-100" disabled={loading}>
           {loading ? (
             <>
               <Spinner animation="border" size="sm" className="me-2" />
-              Signing Up...
+              Logging In...
             </>
           ) : (
-            "Sign Up"
+            "Login"
           )}
         </Button>
 
@@ -107,4 +99,4 @@ const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
   );
 }
 
-export default Signup;
+export default Login;

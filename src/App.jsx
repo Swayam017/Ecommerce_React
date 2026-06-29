@@ -10,6 +10,7 @@ import Store from "./pages/Store";
 import ContactUs from "./pages/ContactUs";
 import ProductDetails from "./pages/ProductDetails";
 import Signup from "./pages/Signup";
+import Login from "./pages/login";
 
 function App() {
   const [cartIsShown, setCartIsShown] = useState(false);
@@ -39,6 +40,7 @@ function App() {
   <Route path="/about" element={<About />} />
    <Route path="/contact" element={<ContactUs />} />
     <Route path="/signup" element={<Signup />} />
+     <Route path="/login" element={<Login />} />
    <Route
         path="/products/:productId"
         element={<ProductDetails />}

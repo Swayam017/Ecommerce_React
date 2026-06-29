@@ -46,9 +46,15 @@ function Header({ onShowCart }) {
     CONTACT US
   </NavLink>
 
-  <Link to="/signup" className="btn btn-outline-light">
-  Sign Up
-</Link>
+ <div className="d-flex gap-2">
+  <Link to="/login" className="btn btn-outline-light">
+    Login
+  </Link>
+
+  <Link to="/signup" className="btn btn-warning">
+    Sign Up
+  </Link>
+</div>
 
 </Nav>
 
