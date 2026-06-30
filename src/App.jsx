@@ -13,7 +13,12 @@ import Signup from "./pages/Signup";
 import Login from "./pages/login";
 import Profile from "./pages/Profile";
 
+import { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import AuthContext from "./store/auth-context";
+
 function App() {
+  const authCtx = useContext(AuthContext);
   const [cartIsShown, setCartIsShown] = useState(false);
 
   const showCartHandler = () => {
@@ -37,7 +42,17 @@ function App() {
 
       <Routes>
   <Route path="/" element={<Home />} />
-  <Route path="/store" element={<Store />} />
+  
+  <Route
+  path="/store"
+  element={
+    authCtx.isLoggedIn ? (
+      <Store />
+    ) : (
+      <Navigate to="/login" replace />
+    )
+  }
+/>
   <Route path="/about" element={<About />} />
    <Route path="/contact" element={<ContactUs />} />
     <Route path="/signup" element={<Signup />} />
