@@ -1,4 +1,9 @@
-import { createContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 
 const AuthContext = createContext({
   token: "",
@@ -10,27 +15,44 @@ const AuthContext = createContext({
 export function AuthContextProvider({ children }) {
   const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
 
-  // Read token from localStorage when app starts
-  const initialToken = localStorage.getItem("token");
+  let initialToken = localStorage.getItem("token");
+  const loginTime = localStorage.getItem("loginTime");
+
+  const TOKEN_EXPIRY_TIME = 5 * 60 * 1000;
+
+  if (initialToken && loginTime) {
+    const elapsedTime = Date.now() - Number(loginTime);
+
+    if (elapsedTime > TOKEN_EXPIRY_TIME) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("loginTime");
+
+      initialToken = null;
+    }
+  }
 
   const [token, setToken] = useState(initialToken);
 
   const isLoggedIn = !!token;
 
   // Login
-  function loginHandler(token) {
+  const loginHandler = (token) => {
     setToken(token);
+
     localStorage.setItem("token", token);
-  }
+    localStorage.setItem("loginTime", Date.now());
+  };
 
   // Logout
-  function logoutHandler() {
+  const logoutHandler = useCallback(() => {
     setToken(null);
-    localStorage.removeItem("token");
-  }
 
-  // Validate token with Firebase
-  async function checkTokenValidity() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("loginTime");
+  }, []);
+
+  // Validate Token
+  const checkTokenValidity = useCallback(async () => {
     if (!token) return;
 
     try {
@@ -60,14 +82,11 @@ export function AuthContextProvider({ children }) {
     } catch (err) {
       console.log("Error validating token:", err);
     }
-  }
+  }, [token, API_KEY, logoutHandler]);
 
-  // Runs whenever token changes
   useEffect(() => {
-    if (token) {
-      checkTokenValidity();
-    }
-  }, [token]);
+    checkTokenValidity();
+  }, [checkTokenValidity]);
 
   const contextValue = {
     token,
