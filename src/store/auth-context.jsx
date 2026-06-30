@@ -7,6 +7,7 @@ import {
 
 const AuthContext = createContext({
   token: "",
+  email:"",
   isLoggedIn: false,
   login: (token) => {},
   logout: () => {},
@@ -14,6 +15,10 @@ const AuthContext = createContext({
 
 export function AuthContextProvider({ children }) {
   const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
+
+  const [email,setEmail]=useState(
+    localStorage.getItem("email")
+);
 
   let initialToken = localStorage.getItem("token");
   const loginTime = localStorage.getItem("loginTime");
@@ -36,21 +41,29 @@ export function AuthContextProvider({ children }) {
   const isLoggedIn = !!token;
 
   // Login
-  const loginHandler = (token) => {
-    setToken(token);
+  function loginHandler(token,email){
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("loginTime", Date.now());
-  };
+    setToken(token);
+    setEmail(email);
+
+    localStorage.setItem("token",token);
+    localStorage.setItem("email",email);
+
+    localStorage.setItem("loginTime",Date.now());
+
+}
 
   // Logout
-  const logoutHandler = useCallback(() => {
+function logoutHandler(){
+
     setToken(null);
+    setEmail("");
 
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
     localStorage.removeItem("loginTime");
-  }, []);
 
+}
   // Validate Token
   const checkTokenValidity = useCallback(async () => {
     if (!token) return;
@@ -88,12 +101,19 @@ export function AuthContextProvider({ children }) {
     checkTokenValidity();
   }, [checkTokenValidity]);
 
-  const contextValue = {
-    token,
-    isLoggedIn,
-    login: loginHandler,
-    logout: logoutHandler,
-  };
+const contextValue={
+
+token,
+
+email,
+
+isLoggedIn,
+
+login:loginHandler,
+
+logout:logoutHandler
+
+}
 
   return (
     <AuthContext.Provider value={contextValue}>

@@ -49,7 +49,7 @@ const navigate = useNavigate();
       // Store JWT
       //localStorage.setItem("token", data.idToken);
 
-      authCtx.login(data.idToken);
+      authCtx.login(data.idToken, data.email);
       navigate("/");
 
       alert("Login Successful");
