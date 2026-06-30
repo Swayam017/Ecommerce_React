@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { Form, Button, Card, Alert, Spinner } from "react-bootstrap";
+import { useContext } from "react";
+import AuthContext from "../store/auth-context";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -7,6 +10,9 @@ function Login() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const authCtx = useContext(AuthContext);
+const navigate = useNavigate();
 
   const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
 
@@ -41,7 +47,10 @@ function Login() {
       console.log("JWT Token:", data.idToken);
 
       // Store JWT
-      localStorage.setItem("token", data.idToken);
+      //localStorage.setItem("token", data.idToken);
+
+      authCtx.login(data.idToken);
+      navigate("/");
 
       alert("Login Successful");
     } catch (err) {

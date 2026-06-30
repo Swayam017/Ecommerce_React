@@ -1,64 +1,93 @@
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+
 import CartButton from "../Cart/CartButton";
-import { Link } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
+
 import "./Header.css";
 
 function Header({ onShowCart }) {
+  const authCtx = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const logoutHandler = () => {
+    authCtx.logout();
+    navigate("/login");
+  };
+
   return (
     <>
       <Navbar className="main-navbar">
-        <Container>
-          <Nav className="mx-auto">
-  <NavLink
-    to="/"
-    className={({ isActive }) =>
-      isActive ? "nav-link active-link" : "nav-link"
-    }
-  >
-    HOME
-  </NavLink>
+        <Container className="header-container">
+          {/* Navigation */}
+          <Nav className="nav-center">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? "nav-link active-link" : "nav-link"
+              }
+            >
+              HOME
+            </NavLink>
 
-  <NavLink
-    to="/store"
-    className={({ isActive }) =>
-      isActive ? "nav-link active-link" : "nav-link"
-    }
-  >
-    STORE
-  </NavLink>
+            <NavLink
+              to="/store"
+              className={({ isActive }) =>
+                isActive ? "nav-link active-link" : "nav-link"
+              }
+            >
+              STORE
+            </NavLink>
 
-  <NavLink
-    to="/about"
-    className={({ isActive }) =>
-      isActive ? "nav-link active-link" : "nav-link"
-    }
-  >
-    ABOUT
-  </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive ? "nav-link active-link" : "nav-link"
+              }
+            >
+              ABOUT
+            </NavLink>
 
-  <NavLink
-    to="/contact"
-    className={({ isActive }) =>
-      isActive ? "nav-link active-link" : "nav-link"
-    }
-  >
-    CONTACT US
-  </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? "nav-link active-link" : "nav-link"
+              }
+            >
+              CONTACT US
+            </NavLink>
+          </Nav>
 
- <div className="d-flex gap-2">
-  <Link to="/login" className="btn btn-outline-light">
-    Login
-  </Link>
+          {/* Right Side */}
+          <div className="header-right">
+            {!authCtx.isLoggedIn ? (
+              <>
+                <Link to="/login" className="auth-btn">
+                  Login
+                </Link>
 
-  <Link to="/signup" className="btn btn-warning">
-    Sign Up
-  </Link>
-</div>
+                <Link to="/signup" className="auth-btn">
+                  Sign Up
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link to="/profile" className="auth-btn">
+                  Profile
+                </Link>
 
-</Nav>
+                <button
+                  className="auth-btn logout-btn"
+                  onClick={logoutHandler}
+                >
+                  Logout
+                </button>
+              </>
+            )}
 
-          <CartButton onClick={onShowCart} />
+            <CartButton onClick={onShowCart} />
+          </div>
         </Container>
       </Navbar>
 
